@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircusTrain", "CircusTrain\CircusTrain.csproj", "{B723A4F3-49FA-47D3-8D0E-F39C376B647F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircusTrain.Test", "CircusTrain.Test\CircusTrain.Test.csproj", "{4EFAEFF4-0024-4DC3-A5DA-5C3531AB881E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B723A4F3-49FA-47D3-8D0E-F39C376B647F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B723A4F3-49FA-47D3-8D0E-F39C376B647F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B723A4F3-49FA-47D3-8D0E-F39C376B647F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B723A4F3-49FA-47D3-8D0E-F39C376B647F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EFAEFF4-0024-4DC3-A5DA-5C3531AB881E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFAEFF4-0024-4DC3-A5DA-5C3531AB881E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFAEFF4-0024-4DC3-A5DA-5C3531AB881E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFAEFF4-0024-4DC3-A5DA-5C3531AB881E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B9EE866-C2BC-4DE3-99F6-4A2A3946C4D7}
+	EndGlobalSection
+EndGlobal
