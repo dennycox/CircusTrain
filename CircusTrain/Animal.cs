@@ -6,13 +6,14 @@ namespace CircusTrain
 {
     public class Animal
     {
-        public Diet Diet { get; set; }
+        public Diet Diet { get; }
 
-        public Size Size { get; set; }
+        public Size Size { get; }
 
-        public override string ToString()
+        public Animal(Diet diet, Size size)
         {
-            return $"Animal - Diet: {Diet}, Size: {Size}";
+            this.Diet = diet;
+            this.Size = size;
         }
     }
 }

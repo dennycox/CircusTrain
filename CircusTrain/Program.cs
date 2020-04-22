@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace CircusTrain
 {
@@ -11,8 +12,7 @@ namespace CircusTrain
 
             List<Animal> animals = GetRandomAnimals();
             train.AddAnimals(animals);
-
-            Console.WriteLine(train);
+            PrintToConsole(train);
         }
 
         private static List<Animal> GetRandomAnimals()
@@ -28,10 +28,24 @@ namespace CircusTrain
                 var sizes = Enum.GetValues(typeof(Size));
                 var size = (Size)sizes.GetValue(random.Next(sizes.Length));
 
-                animals.Add(new Animal { Size = size, Diet = diet });
+                animals.Add(new Animal(diet, size));
             }
 
             return animals;
+        }
+
+        public static void PrintToConsole(CircusTrain train)
+        {
+            IReadOnlyList<Wagon> wagons = train.GetWagons();
+
+            foreach(Wagon wagon in wagons)
+            {
+                Console.WriteLine("--------------------");
+                foreach(Animal animal in wagon.GetAnimals())
+                {
+                    Console.WriteLine($"Diet: {animal.Diet}, Size: {animal.Size}");
+                }
+            }
         }
     }
 }

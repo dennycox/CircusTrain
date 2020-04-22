@@ -8,53 +8,80 @@ namespace CircusTrain
     {
         public int MaxSize { get => 10; }
 
-        private List<Animal> Animals { get; set; }
+        private List<Animal> _animals;
 
         public Wagon()
         {
-            Animals = new List<Animal>();
+            _animals = new List<Animal>();
         }
 
-        public void AddAnimal(Animal animal)
+        public IReadOnlyList<Animal> GetAnimals()
         {
-            int size = GetPointsAmount();
+            return _animals;
+        }
 
-            size += animal.Size.Points();
-
-            if (size <= MaxSize)
+        public bool AddAnimal(Animal animal)
+        {
+            if (DoesAnimalFit(animal) && DoesAnimalSurvive(animal))
             {
-                Animals.Add(animal);
+                _animals.Add(animal);
+                return true;
             }
             else
             {
-                throw new Exception("Wagon max size limit exceeded!");
+                return false;
             }
         }
 
-        private int GetPointsAmount()
+        private bool DoesAnimalFit(Animal animal)
+        {
+            int size = GetPoints();
+
+            size += (int)animal.Size;
+
+            if (size <= MaxSize)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool DoesAnimalSurvive(Animal animal)
+        {
+            Animal carnivore = null;
+            for (Size s = Size.Large; s >= Size.Small; s--)
+            {
+                foreach (var a in _animals)
+                {
+                    if (a.Size == s && a.Diet == Diet.Carnivore)
+                    {
+                        carnivore = a;
+                    }
+                }
+            }
+            if (carnivore != null)
+            {
+                if (carnivore.Size >= animal.Size)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private int GetPoints()
         {
             int size = 0;
 
-            foreach (var a in Animals)
+            foreach (var a in _animals)
             {
-                size += a.Size.Points();
+                size += (int)a.Size;
             }
 
             return size;
-        }
-
-        public override string ToString()
-        {
-            var s = "";
-
-            s = s + $"Points: {GetPointsAmount()}" + "\n\r";
-
-            foreach (var animal in Animals)
-            {
-                s = s + animal + "\n\r";
-            }
-
-            return s;
         }
     }
 }
