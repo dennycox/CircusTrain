@@ -2,6 +2,6 @@
 {
     public enum Diet
     {
-        Herbivore, Carnivore
+        Carnivore, Herbivore
     }
 }

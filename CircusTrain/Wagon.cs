@@ -1,87 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CircusTrain
 {
     public class Wagon
     {
-        public int MaxSize { get => 10; }
-
         private List<Animal> _animals;
+        public int MaxSize { get => 10; }
+        public int AnimalSizePoints { get => _animals.Sum(animal => (int)animal.Size); }
+        public IReadOnlyList<Animal> Animals { get => _animals; }
 
         public Wagon()
         {
             _animals = new List<Animal>();
         }
 
-        public IReadOnlyList<Animal> GetAnimals()
-        {
-            return _animals;
-        }
-
         public bool AddAnimal(Animal animal)
         {
-            if (DoesAnimalFit(animal) && DoesAnimalSurvive(animal))
+            if (AnimalSizePoints + (int)animal.Size <= MaxSize)
             {
-                _animals.Add(animal);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool DoesAnimalFit(Animal animal)
-        {
-            int size = GetPoints();
-
-            size += (int)animal.Size;
-
-            if (size <= MaxSize)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool DoesAnimalSurvive(Animal animal)
-        {
-            Animal carnivore = null;
-            for (Size s = Size.Large; s >= Size.Small; s--)
-            {
-                foreach (var a in _animals)
+                bool canAdd = true;
+                foreach (Animal a in _animals)
                 {
-                    if (a.Size == s && a.Diet == Diet.Carnivore)
+                    if(!a.CanFitTogether(animal))
                     {
-                        carnivore = a;
+                        canAdd = false;
                     }
                 }
-            }
-            if (carnivore != null)
-            {
-                if (carnivore.Size >= animal.Size)
+                if(canAdd)
                 {
-                    return false;
+                    _animals.Add(animal);
+                    return true;
                 }
             }
-            return true;
-        }
-
-        private int GetPoints()
-        {
-            int size = 0;
-
-            foreach (var a in _animals)
-            {
-                size += (int)a.Size;
-            }
-
-            return size;
+            return false;
         }
     }
 }

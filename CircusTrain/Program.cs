@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace CircusTrain
@@ -10,8 +11,9 @@ namespace CircusTrain
         {
             var train = new CircusTrain();
 
-            List<Animal> animals = GetRandomAnimals();
-            train.AddAnimals(animals);
+            List<Animal> animals = GetRandomAnimals()
+                .OrderBy(animal => animal.Diet).ThenByDescending(animal => animal.Size).ToList();
+            animals.ForEach(animal => train.AddAnimal(animal));
             PrintToConsole(train);
         }
 
@@ -36,12 +38,12 @@ namespace CircusTrain
 
         public static void PrintToConsole(CircusTrain train)
         {
-            IReadOnlyList<Wagon> wagons = train.GetWagons();
+            IReadOnlyList<Wagon> wagons = train.Wagons;
 
-            foreach(Wagon wagon in wagons)
+            foreach (Wagon wagon in wagons)
             {
                 Console.WriteLine("--------------------");
-                foreach(Animal animal in wagon.GetAnimals())
+                foreach (Animal animal in wagon.Animals)
                 {
                     Console.WriteLine($"Diet: {animal.Diet}, Size: {animal.Size}");
                 }
