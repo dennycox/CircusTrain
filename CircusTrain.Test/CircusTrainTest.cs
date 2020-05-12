@@ -9,7 +9,7 @@ namespace CircusTrain.Tests
     public class CircusTrainTest
     {
         [TestMethod]
-        public void AddAnimals_Add2Animals_True()
+        public void AddAnimal_Add2Animals_True()
         {
             // Arrange
             CircusTrain train = new CircusTrain();
@@ -28,7 +28,7 @@ namespace CircusTrain.Tests
         }
 
         [TestMethod]
-        public void AddAnimals_Add3Animals_True()
+        public void AddAnimal_Add3Animals_True()
         {
             // Arrange
             CircusTrain train = new CircusTrain();
