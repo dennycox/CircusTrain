@@ -34,13 +34,13 @@ namespace CircusTrain
         {
             foreach (Wagon wagon in _wagons)
             {
-                if (wagon.AddAnimal(animal))
+                if (wagon.TryAddAnimal(animal))
                 {
                     return;
                 }
             }
             Wagon newWagon = new Wagon();
-            newWagon.AddAnimal(animal);
+            newWagon.TryAddAnimal(animal);
             AddWagons(newWagon);
         }
 

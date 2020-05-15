@@ -16,8 +16,8 @@ namespace CircusTrain.Tests
             Animal animal = new Animal(Diet.Carnivore, Size.Large);
 
             // Act
-            wagon.AddAnimal(animal);
-            bool isAdded = wagon.AddAnimal(new Animal(Diet.Herbivore, Size.Large));
+            wagon.TryAddAnimal(animal);
+            bool isAdded = wagon.TryAddAnimal(new Animal(Diet.Herbivore, Size.Large));
 
             // Assert
             Assert.IsFalse(isAdded);
@@ -35,8 +35,8 @@ namespace CircusTrain.Tests
             };
 
             // Act
-            animals.ForEach(animal => wagon.AddAnimal(animal));
-            bool isAdded = wagon.AddAnimal(new Animal(Diet.Herbivore, Size.Large));
+            animals.ForEach(animal => wagon.TryAddAnimal(animal));
+            bool isAdded = wagon.TryAddAnimal(new Animal(Diet.Herbivore, Size.Large));
 
             // Assert
             Assert.IsTrue(isAdded);

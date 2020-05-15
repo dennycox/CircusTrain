@@ -11,9 +11,13 @@ namespace CircusTrain
         {
             var train = new CircusTrain();
 
+            // Het maken van de lijst met animals en deze sorteren zou kunnen worden verplaatst naar 
+            // de CircusTrain class in een DistributeAnimals method
+            // Momenteel is het echter goed genoeg van de leraar
             List<Animal> animals = GetRandomAnimals()
                 .OrderBy(animal => animal.Diet).ThenByDescending(animal => animal.Size).ToList();
             animals.ForEach(animal => train.AddAnimal(animal));
+            
             PrintToConsole(train);
         }
 

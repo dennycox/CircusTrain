@@ -17,7 +17,10 @@ namespace CircusTrain
             _animals = new List<Animal>();
         }
 
-        public bool AddAnimal(Animal animal)
+        // In onderstaande methode zouden de if statements verdeeld kunnen worden in private 
+        // methods om de code begrijpbaarder te maken
+        // Momenteel is het echter goed genoeg van de leraar
+        public bool TryAddAnimal(Animal animal)
         {
             if (AnimalSizePoints + (int)animal.Size <= MaxSize)
             {
